@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.benfort.net/sitemap-index.xml
+Sitemap: https://www.benfort.net/sitemap.xml
