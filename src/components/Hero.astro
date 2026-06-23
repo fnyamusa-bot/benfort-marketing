@@ -1,0 +1,92 @@
+---
+import { site } from '../content/site';
+const { hero } = site;
+---
+<section
+  id="hero"
+  class="relative min-h-screen bg-dark-navy flex items-center overflow-hidden pt-16"
+  aria-label="Hero"
+>
+  <!-- Decorative circles (kept inside overflow-hidden) -->
+  <div
+    class="absolute -right-40 -top-40 w-[600px] h-[600px] rounded-full bg-dark2 opacity-60"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute -left-24 bottom-0 w-[360px] h-[360px] rounded-full bg-dark2 opacity-40"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute right-1/4 bottom-1/4 w-[180px] h-[180px] rounded-full bg-dark2 opacity-30"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+    <div class="max-w-3xl">
+
+      <!-- Badge -->
+      <div
+        class="inline-flex items-center gap-2 bg-dark2 border border-ice/10 text-ice/80 text-xs font-medium px-4 py-1.5 rounded-full mb-8"
+        data-animate
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-brand-green" aria-hidden="true"></span>
+        Zimbabwe's digital solutions partner
+      </div>
+
+      <!-- Headline -->
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-display mb-6"
+        data-animate data-delay="100"
+      >
+        Building smarter businesses<span class="text-brand-green">.</span>
+      </h1>
+
+      <!-- Sub-headline -->
+      <p
+        class="text-lg sm:text-xl text-ice/80 font-medium mb-4 leading-relaxed"
+        data-animate data-delay="200"
+      >
+        AI · Automation · Design · Technology
+      </p>
+      <p
+        class="text-base sm:text-lg text-ice/60 leading-body max-w-xl mb-10"
+        data-animate data-delay="300"
+      >
+        {hero.sub}
+      </p>
+
+      <!-- CTAs -->
+      <div
+        class="flex flex-col sm:flex-row gap-3"
+        data-animate data-delay="400"
+      >
+        <a
+          href="#contact"
+          class="inline-flex items-center justify-center gap-2 bg-brand-green text-white px-7 py-3.5 rounded-xl font-semibold text-base
+                 hover:bg-emerald-500 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-dark-navy
+                 transition-colors duration-200 active:scale-95 shadow-lg shadow-brand-green/30"
+        >
+          {hero.cta1}
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+        <a
+          href="#services"
+          class="inline-flex items-center justify-center gap-2 border border-white/30 text-white px-7 py-3.5 rounded-xl font-semibold text-base
+                 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-navy
+                 transition-colors duration-200 active:scale-95"
+        >
+          {hero.cta2}
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div
+    class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-dark-navy to-transparent"
+    aria-hidden="true"
+  ></div>
+</section>

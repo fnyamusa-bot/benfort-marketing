@@ -1,0 +1,31 @@
+---
+import { site } from '../content/site';
+const { trust } = site;
+
+const pillars = ['AI', 'WEB', 'DATA', 'DESIGN', 'MARKETING'];
+---
+<section class="bg-light py-10 border-b border-brand-blue/8" aria-label="Capabilities">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 justify-between" data-animate>
+
+      <!-- Pillars row -->
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+        {pillars.map((p, i) => (
+          <>
+            <span class="font-black text-brand-blue text-sm tracking-[0.12em]">{p}</span>
+            {i < pillars.length - 1 && (
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0" aria-hidden="true"></span>
+            )}
+          </>
+        ))}
+      </div>
+
+      <!-- Credibility line -->
+      <p class="text-brand-grey text-sm font-medium max-w-xs text-right hidden sm:block">
+        {trust.sub}
+      </p>
+    </div>
+
+  </div>
+</section>

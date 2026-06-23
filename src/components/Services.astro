@@ -1,0 +1,75 @@
+---
+import { site } from '../content/site';
+const { services } = site;
+---
+<section id="services" class="bg-white py-24 lg:py-32" aria-labelledby="services-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="max-w-2xl mb-16" data-animate>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-brand-green" aria-hidden="true"></span>
+        <span class="text-brand-green font-semibold text-sm uppercase tracking-widest">What we do</span>
+      </div>
+      <h2
+        id="services-heading"
+        class="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-display leading-tight mb-4"
+      >
+        Five pillars.<br />Every capability.
+      </h2>
+      <p class="text-brand-grey text-lg leading-body">
+        We cover the full digital stack — so you have one trusted partner instead of five separate agencies.
+      </p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+      {services.map((service, i) => (
+        <article
+          class="group bg-light rounded-xl p-7 shadow-card hover:shadow-card-hover
+                 transition-shadow duration-300 flex flex-col gap-5"
+          data-animate
+          data-delay={String(Math.min(i * 100, 400))}
+        >
+          <!-- Card header -->
+          <div>
+            <div class="flex items-start justify-between mb-3">
+              <span class="text-xs font-black text-brand-blue/30 tracking-[0.2em]">{service.number}</span>
+              <span class="w-2 h-2 rounded-full bg-brand-green mt-1" aria-hidden="true"></span>
+            </div>
+            <h3 class="text-xl font-black text-brand-blue leading-tight mb-1">{service.name}</h3>
+            <p class="text-brand-green font-semibold text-sm">{service.tagline}</p>
+          </div>
+
+          <!-- Service items -->
+          <ul class="flex flex-col gap-3" role="list">
+            {service.items.map(item => (
+              <li class="flex gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0 mt-[7px]" aria-hidden="true"></span>
+                <div>
+                  <span class="font-semibold text-ink text-sm">{item.name}</span>
+                  {' '}
+                  <span class="text-brand-grey text-sm leading-snug">— {item.desc}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-14 text-center" data-animate>
+      <a
+        href="#contact"
+        class="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3.5 rounded-xl font-semibold
+               hover:bg-brand-green focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2
+               transition-colors duration-200 active:scale-95 shadow-btn"
+      >
+        Discuss your project
+        <span class="w-1.5 h-1.5 rounded-full bg-white/60" aria-hidden="true"></span>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,103 @@
+---
+import { site } from '../content/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title       = site.meta.title,
+  description = site.meta.description,
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={site.website} />
+  <meta property="og:site_name"   content={site.name} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <link rel="canonical" href={site.website} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Scroll-reveal */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    [data-animate].is-visible          { opacity: 1; transform: translateY(0); }
+    [data-animate][data-delay="100"]   { transition-delay: 0.10s; }
+    [data-animate][data-delay="200"]   { transition-delay: 0.20s; }
+    [data-animate][data-delay="300"]   { transition-delay: 0.30s; }
+    [data-animate][data-delay="400"]   { transition-delay: 0.40s; }
+    [data-animate][data-delay="500"]   { transition-delay: 0.50s; }
+
+    /* Nav scroll state */
+    #site-nav {
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #site-nav.nav-scrolled {
+      background-color: #ffffff;
+      box-shadow: 0 1px 12px rgba(1,48,138,0.08), 0 0 0 1px rgba(1,48,138,0.04);
+    }
+    #site-nav.nav-scrolled .nav-link  { color: #1A2230; }
+    #site-nav.nav-scrolled .logo-dark { display: block; }
+    #site-nav.nav-scrolled .logo-light{ display: none;  }
+    #site-nav.nav-scrolled .bar       { background-color: #1A2230; }
+
+    .logo-dark  { display: none; }
+    .logo-light { display: block; }
+  </style>
+</head>
+<body class="font-sans antialiased text-ink bg-white">
+  <slot />
+
+  <script>
+    // Scroll-reveal
+    const revealObserver = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          revealObserver.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('[data-animate]').forEach(el => revealObserver.observe(el));
+
+    // Sticky nav
+    const nav = document.getElementById('site-nav');
+    if (nav) {
+      const tick = () => {
+        nav.classList.toggle('nav-scrolled', window.scrollY > 72);
+      };
+      window.addEventListener('scroll', tick, { passive: true });
+      tick();
+    }
+  </script>
+</body>
+</html>

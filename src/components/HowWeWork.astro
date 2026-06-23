@@ -1,0 +1,56 @@
+---
+import { site } from '../content/site';
+const { howWeWork } = site;
+---
+<section id="how-we-work" class="bg-light py-24 lg:py-32" aria-labelledby="process-heading">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="max-w-xl mb-16" data-animate>
+      <div class="flex items-center gap-2 mb-4">
+        <span class="w-2 h-2 rounded-full bg-brand-green" aria-hidden="true"></span>
+        <span class="text-brand-green font-semibold text-sm uppercase tracking-widest">Our process</span>
+      </div>
+      <h2
+        id="process-heading"
+        class="text-3xl sm:text-4xl lg:text-5xl font-black text-ink tracking-display leading-tight mb-4"
+      >
+        How we work
+      </h2>
+      <p class="text-brand-grey text-lg leading-body">
+        A clear, five-step process from first conversation to ongoing support.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <ol class="relative grid grid-cols-1 sm:grid-cols-5 gap-0" role="list">
+      {howWeWork.map((step, i) => (
+        <li
+          class="relative flex sm:flex-col items-start sm:items-center gap-4 sm:gap-0 pb-10 sm:pb-0"
+          data-animate
+          data-delay={String(i * 100)}
+        >
+          <!-- Connector line (desktop) -->
+          {i < howWeWork.length - 1 && (
+            <div
+              class="hidden sm:block absolute top-6 left-1/2 w-full h-px bg-brand-blue/10"
+              aria-hidden="true"
+            ></div>
+          )}
+
+          <!-- Circle -->
+          <div class="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-brand-green flex items-center justify-center shadow-md shadow-brand-green/30 sm:mb-5">
+            <span class="text-white font-black text-lg leading-none">{step.step}</span>
+          </div>
+
+          <!-- Text -->
+          <div class="sm:text-center sm:px-3 pt-1 sm:pt-0">
+            <h3 class="font-black text-brand-blue text-base mb-1">{step.name}</h3>
+            <p class="text-brand-grey text-sm leading-snug">{step.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+
+  </div>
+</section>

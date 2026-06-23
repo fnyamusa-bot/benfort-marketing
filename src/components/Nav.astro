@@ -1,0 +1,94 @@
+---
+import { site } from '../content/site';
+---
+<nav id="site-nav" class="fixed top-0 inset-x-0 z-50" role="navigation" aria-label="Main navigation">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-18">
+
+      <!-- Logo -->
+      <a href="/" aria-label="Benfort Marketing — home">
+        <!-- Light version: text logo on dark hero (before scroll) -->
+        <div class="logo-light flex items-baseline gap-1.5">
+          <span class="text-white font-black text-2xl tracking-display leading-none">benfort</span>
+          <span class="w-2 h-2 rounded-full bg-brand-green mb-0.5 flex-shrink-0" aria-hidden="true"></span>
+          <span class="text-brand-green font-bold text-[10px] uppercase tracking-[0.18em] self-end mb-px">marketing</span>
+        </div>
+        <!-- Dark version: real logo image on white nav (after scroll) -->
+        <img
+          src="/benfort marketing.png"
+          alt="Benfort Marketing"
+          class="logo-dark hidden h-8 w-auto"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#services"    class="nav-link text-white/85 hover:text-brand-green font-medium text-sm transition-colors duration-200">Services</a>
+        <a href="#how-we-work" class="nav-link text-white/85 hover:text-brand-green font-medium text-sm transition-colors duration-200">How We Work</a>
+        <a href="#why-benfort" class="nav-link text-white/85 hover:text-brand-green font-medium text-sm transition-colors duration-200">Why Benfort</a>
+        <a href="#contact"     class="nav-link text-white/85 hover:text-brand-green font-medium text-sm transition-colors duration-200">Contact</a>
+        <a
+          href="#contact"
+          class="bg-brand-green text-white px-5 py-2 rounded-lg font-semibold text-sm
+                 hover:bg-emerald-600 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2
+                 transition-colors duration-200 active:scale-95"
+        >
+          Let's talk
+        </a>
+      </div>
+
+      <!-- Hamburger -->
+      <button
+        id="hamburger"
+        class="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 focus-visible:ring-2 focus-visible:ring-brand-green rounded"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="bar block w-6 h-0.5 bg-white rounded transition-transform duration-200 origin-center"></span>
+        <span class="bar block w-6 h-0.5 bg-white rounded transition-opacity duration-200"></span>
+        <span class="bar block w-6 h-0.5 bg-white rounded transition-transform duration-200 origin-center"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-dark-navy/95 backdrop-blur-sm border-t border-dark2"
+    aria-hidden="true"
+  >
+    <div class="max-w-7xl mx-auto px-4 py-5 flex flex-col gap-3">
+      {(['Services', '#services'], ['How We Work', '#how-we-work'], ['Why Benfort', '#why-benfort'], ['Contact', '#contact']).map(() => null)}
+      <a href="#services"    class="mobile-link text-ice hover:text-brand-green font-medium py-1.5 transition-colors">Services</a>
+      <a href="#how-we-work" class="mobile-link text-ice hover:text-brand-green font-medium py-1.5 transition-colors">How We Work</a>
+      <a href="#why-benfort" class="mobile-link text-ice hover:text-brand-green font-medium py-1.5 transition-colors">Why Benfort</a>
+      <a href="#contact"     class="mobile-link text-ice hover:text-brand-green font-medium py-1.5 transition-colors">Contact</a>
+      <a href="#contact"     class="mobile-link mt-1 bg-brand-green text-white px-5 py-2.5 rounded-lg font-semibold text-sm text-center hover:bg-emerald-600 transition-colors">
+        Let's talk
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const btn  = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  const links = document.querySelectorAll('.mobile-link');
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    btn?.setAttribute('aria-expanded', 'false');
+    menu?.setAttribute('aria-hidden', 'true');
+  }
+
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', !open);
+    btn.setAttribute('aria-expanded', String(open));
+    menu?.setAttribute('aria-hidden', String(!open));
+  });
+
+  links.forEach(l => l.addEventListener('click', closeMenu));
+</script>
