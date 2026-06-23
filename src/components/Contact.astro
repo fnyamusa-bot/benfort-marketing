@@ -24,7 +24,7 @@ const serviceOptions = site.services.map(s => s.name);
           Let's build something smarter.
         </h2>
         <p class="text-brand-grey text-lg leading-body mb-10">
-          Tell us what you're working on. We'll have a proper conversation about it — no sales pitch, just straight talk about what could work.
+          Tell us what you're working on. We'll have a proper conversation about it: no sales pitch, just straight talk about what could work.
         </p>
 
         <div class="flex flex-col gap-5">
@@ -162,9 +162,9 @@ const serviceOptions = site.services.map(s => s.name);
                        focus:outline-none focus:ring-2 focus:ring-brand-blue/30 focus:border-brand-blue
                        transition-colors duration-200 cursor-pointer"
               >
-                <option value="">— Select a service —</option>
+                <option value="">Select a service</option>
                 {serviceOptions.map(s => <option value={s}>{s}</option>)}
-                <option value="Not sure yet">Not sure yet — let's chat</option>
+                <option value="Not sure yet">Not sure yet, let's chat</option>
               </select>
             </div>
 
