@@ -34,13 +34,12 @@ const {
   <link rel="canonical" href={site.website} />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Inter font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
+  <!-- Critical styles first so content is visible immediately -->
   <style>
     html { scroll-behavior: smooth; }
+
+    /* System font renders instantly while Inter loads */
+    body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
 
     /* Scroll-reveal */
     [data-animate] {
@@ -72,6 +71,21 @@ const {
     .logo-dark  { display: none; }
     .logo-light { display: block; }
   </style>
+
+  <!--
+    Non-blocking Google Fonts:
+    - preconnect opens the TCP connection early
+    - media="print" loads without blocking render
+    - onload switches it to apply to all media once loaded
+    - noscript is the fallback for JS-disabled browsers
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" />
+  </noscript>
 </head>
 <body class="font-sans antialiased text-ink bg-white">
   <slot />
